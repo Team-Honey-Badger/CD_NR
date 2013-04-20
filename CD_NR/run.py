@@ -221,6 +221,8 @@ def levelGen(blocks,peds,file):
 				blocks.append(land.Land(magnetPlatformFrames,x_loc,y_loc, magnetPlatformDust, "joint", "/"))
 			elif line[i] == "\\":
 				blocks.append(land.Land(magnetPlatformFrames,x_loc,y_loc, magnetPlatformDust, "joint", "\\"))
+			elif line[i] == "=":
+				blocks.append(land.Land(invisibleFrames,x_loc,y_loc, invisibleDust, "joint", "="))
 			elif line[i] == "X":
 				blocks.append(land.Land(blackFrames,x_loc,y_loc, blackDust, "joint", "="))
 			elif line[i] == "J":
