@@ -35,8 +35,7 @@ class Rifle:
 		self.cooldown = False
 		self.cooldownTime = 0
 		self.cooldownDuration = cooldownDuration
-		
-		
+
 	def draw(self,world):
 		if self.active:
 			if self.x+self.shift-self.shift/4 > self.mx:
