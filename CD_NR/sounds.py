@@ -3,6 +3,7 @@
 import pygame,os
 pygame.mixer.pre_init(44100, -16, 2, 2048)
 pygame.init()
+pygame.mixer.set_num_channels(300)
 
 soundEffects = {}
 
@@ -26,6 +27,7 @@ soundEffects['MonsterScreech'] = os.path.join('enemy','MonsterScreech.mp3')
 
 def play(soundName):
 	sound = pygame.mixer.Sound(os.path.join('sounds', soundEffects[soundName]))
+	sound.set_volume(1.0)
 	sound.play(0)
 	
 def loop(soundName):
