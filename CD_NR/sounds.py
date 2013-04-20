@@ -10,9 +10,9 @@ soundEffects = {}
 soundEffects['Background'] = os.path.join('ambience','Background.mp3')
 
 #Gun sound effects
-soundEffects['RifleShot'] = os.path.join('guns','RifleShot.mp3')
-soundEffects['ShotgunShot'] = os.path.join('guns','ShotgunShot')
-soundEffects['ShotgunPump'] = os.path.join('guns','ShotgunPump.mp3')
+soundEffects['RifleShot'] = os.path.join('guns','RifleShot.wav')
+soundEffects['ShotgunShot'] = os.path.join('guns','ShotgunShot.wav')
+soundEffects['ShotgunPump'] = os.path.join('guns','ShotgunPump.wav')
 
 #Player sound effects
 soundEffects['PlayerHit'] = os.path.join('player','PlayerHit.mp3')
@@ -24,11 +24,11 @@ soundEffects['MonsterHorseScream'] = os.path.join('enemy','MonsterHorseScream.mp
 soundEffects['MonsterHorseScream2'] = os.path.join('enemy','MonsterHorseScream2.mp3')
 soundEffects['MonsterScreech'] = os.path.join('enemy','MonsterScreech.mp3')
 
-
-class Sound:
-	def __init__(self,soundName):
-		self.sound = pygame.mixer.Sound(os.path.join('sounds', soundEffects[soundName]))
-		
-	def play(self):
-		self.sound.play()
+def play(soundName):
+	sound = pygame.mixer.Sound(os.path.join('sounds', soundEffects[soundName]))
+	sound.play(0)
+	
+def loop(soundName):
+	sound = pygame.mixer.music.load(os.path.join('sounds', soundEffects[soundName]))
+	pygame.mixer.music.play(-1)
 		

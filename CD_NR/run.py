@@ -5,7 +5,7 @@
 ## import modules
 import os, pygame, pygame.mixer, sys, glob, time, math, random
 ## import custom made modules 
-import land, mouse, player, sword, fist, spear, rifle, bullet, pellets, settings
+import land, mouse, player, sword, fist, spear, rifle, bullet, pellets, settings, sounds
 ## put commonly used in global namespace
 from pygame.locals import *
 pygame.init()
@@ -320,7 +320,9 @@ def main():
 	deletePedBulletsList = []
 	deletePedPelletsList = []
 	
-	while True:
+	sounds.loop('Background')	
+	
+	while True:		
 		clock.tick(fps)
 		yolo += 1
 		
