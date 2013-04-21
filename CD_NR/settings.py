@@ -9,8 +9,8 @@ class Settings:
 		##weapon cooldowns
 		self.swordCoolDown = 1 
 		self.spearCoolDown = 1
-		self.shotgunCoolDown = 1
-		self.akCoolDown = 1
+		self.shotgunCoolDown = 15
+		self.akCoolDown = 0
 		self.swordCoolDownAI = 100 
 		self.spearCoolDownAI = 100
 		self.shotgunCoolDownAI = 100
@@ -101,6 +101,9 @@ class Settings:
 		self.fuse2 = 200
 		self.fuse3 = 300
 		self.fuse4 = 400
+		
+		##sound
+		self.volume = 1.0
 		
 		##commented out
 		# self. = 

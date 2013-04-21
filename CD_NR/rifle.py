@@ -70,9 +70,12 @@ class Rifle:
 			self.angle = math.degrees(math.atan2(dx,dy)) - 135
 			
 			if start and not self.attacking and not self.cooldown:				
-				self.attacking = True					
+				self.attacking = True
+				if self.endOfRifle == 3:
+					sounds.play('RifleShot')
+				elif self.endOfRifle == 2:
+					sounds.play('ShotgunShot')
 			if self.attacking and not self.retracting:				
-				sounds.play('RifleShot')
 				self.currentFrame += 1				
 				if self.currentFrame == self.numFrames-1:
 					self.retracting = True
@@ -84,6 +87,9 @@ class Rifle:
 					self.cooldown = True
 					self.cooldownTime = self.cooldownDuration
 			if self.cooldown:
+				if self.cooldownTime == 13:
+					if self.endOfRifle == 2:
+						sounds.play('ShotgunPump')
 				if self.cooldownTime <= 0:
 					self.cooldown = False
 				else:
