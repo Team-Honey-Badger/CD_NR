@@ -162,8 +162,8 @@ voidMistFrames,voidMistDust = loadImages("voidMistBlock",True)
 #the world is one large Surface
 #images are blit to the world, and then the world is blit to the screen
 #this enables scrolling
-#because Surfaces have a max size, I've been forced to limit the maps to 200 x 200 blocks
-world_width, world_height = int(width*9.5), int(width*9.5)
+#because Surfaces have a max size, I've been forced to limit the maps to 70 x 200 blocks
+world_width, world_height = int(width*9.5), int(width*2.7)
 world = pygame.Surface((world_width, world_height))
 
 
@@ -193,8 +193,8 @@ def levelGen(blocks,peds,file):
 	f = open(file,"r")
 	line = ""
 	
-	y_loc = sampleBlock.size*20
-	for b in range(200):
+	y_loc = sampleBlock.size*0
+	for b in range(70):
 		x_loc = sampleBlock.size*20
 		line = f.readline()
 		for i in range(200):
@@ -882,7 +882,6 @@ def main():
 		if ridingVer:
 			user.teleport(user.x,user.y+s.verticalPlatformSpeed*2*ridingVerDirection)
 		user.update(jump,left,right,headCollisions,topCollisions,chestCollisions,feetCollisions)
-		print user.y/sampleBlock.size
 		
 		##ped AI and updating
 		pNum = -1

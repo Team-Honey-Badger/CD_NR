@@ -6,8 +6,6 @@ class Player:
 	def __init__(self,x,y,head,chest,feet,scalar):
 		self.x = x
 		self.y = y
-		self.dx = 0
-		self.dy = 0
 		
 		self.head = head
 		self.chest = chest
@@ -123,9 +121,6 @@ class Player:
 		##applying motion to player
 		self.y += int(self.fallSpeed)
 		self.x += int(self.walkSpeed)
-		
-		self.dx = int(self.walkSpeed)
-		self.dy = int(self.fallSpeed)
 		
 		self.headX = self.x+self.headSize/2
 		self.headY=  self.y+self.headSize
