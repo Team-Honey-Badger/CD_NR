@@ -130,7 +130,9 @@ def loadImage(name,extraScale = 1):
 mouseBlockImage = loadImage("mouseBlock")
 bulletImpactFrames = loadImages("bullet_impact")
 headFrames = loadImages("newHead")
+AIHeadFrames = loadImages("AIHead")
 chestFrames = loadImages("newChest")
+feetFrames = loadImages("newLegs")
 goldSwordFrames = loadImages("goldSword")
 swordCoin = loadImage("swordCoin")
 fistFrames = loadImages("fist")
@@ -172,7 +174,7 @@ world = pygame.Surface((world_width, world_height))
 #maps = mapGen.Generator(scalar)
 testBox = mouse.Mouse(pygame.mouse.get_pos(),0,0,mouseBlockImage)
 sampleBlock = land.Land(dirtFrames,0,0, stoneDust, "joint")
-user = player.Player(sampleBlock.size*22,200*scalar,headFrames,chestFrames,chestFrames,scalar)
+user = player.Player(sampleBlock.size*22,200*scalar,AIHeadFrames,chestFrames,feetFrames,scalar)
 fist = fist.Fist(fistFrames,0,0)
 goldSword = sword.Sword(goldSwordFrames,sampleBlock.size*1,160*scalar,swordCoin,s.swordCoolDown)
 longSpear = spear.Spear(spearFrames,sampleBlock.size*1,160*scalar,spearCoin,s.spearCoolDown)
@@ -261,22 +263,22 @@ def levelGen(blocks,peds,file):
 			
 			#AI
 			elif line[i] == "q":
-				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,headFrames,chestFrames,chestFrames,scalar))
+				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
 				weapon = sword.Sword(goldSwordFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "w":
-				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,headFrames,chestFrames,chestFrames,scalar))
+				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
 				weapon = spear.Spear(spearFrames,sampleBlock.size*23,160*scalar,spearCoin,s.spearCoolDownAI)
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "e":
-				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,headFrames,chestFrames,chestFrames,scalar))
+				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
 				weapon = rifle.Rifle(shotGunFrames,sampleBlock.size*30,160*scalar,shotGunCoin,2,s.shotgunCoolDownAI,"sg")
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "r":
-				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,headFrames,chestFrames,chestFrames,scalar))
+				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
 				weapon = rifle.Rifle(akRifleFrames,sampleBlock.size*40,160*scalar,rifleCoin,3,s.akCoolDownAI,"ak")
 				weapon.active = True
 				pedWeapons.append(weapon)
