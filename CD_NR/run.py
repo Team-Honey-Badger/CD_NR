@@ -475,7 +475,8 @@ def main():
 		pNum = -1
 		for p in peds:
 			pNum+=1
-			if p.x < user.x + 1100*scalar and p.x > user.x - 300 * scalar:
+			if (p.x < user.x + 1100*scalar and p.x > user.x -300 * scalar) and (p.y < user.y + 580*scalar and p.y > user.y - 580 * scalar):
+			#if p.x < user.x + 1100*scalar and p.x > user.x - 300 * scalar:
 				p.draw(world)
 				pedWeapons[pNum].draw(world)
 		
