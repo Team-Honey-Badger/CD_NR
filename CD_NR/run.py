@@ -539,7 +539,8 @@ def main():
 				if block.rect.colliderect(portal.rect):
 					pCollisions += 1
 					collisions += 1
-			if block.x < user.x + 1100*scalar and block.x > user.x - 300 * scalar: #is block in range? test
+			#if block.x < user.x + 1100*scalar and block.x > user.x - 300 * scalar:
+			if (block.x < user.x + 1100*scalar and block.x > user.x - 300 * scalar) and (block.y < user.y + 300*scalar and block.y > user.y - 300 * scalar): #is block in range? test
 				
 				#find collisions with peds
 				pNum = -1
@@ -706,7 +707,7 @@ def main():
 							break
 						if otherBlock.broken:
 							continue
-						if otherBlock.x < user.x + 1100*scalar + sampleBlock.size and otherBlock.x > user.x - 300*scalar - sampleBlock.size:
+						if (otherBlock.x < user.x + 1100*scalar + sampleBlock.size and otherBlock.x > user.x - 300*scalar - sampleBlock.size) and (otherBlock.y < user.y + 300*scalar + sampleBlock.size and otherBlock.y > user.y - 300*scalar - sampleBlock.size):
 							if otherBlock is not block:
 								if block.rect.colliderect(otherBlock.rect):
 									collisions += 1
