@@ -2,6 +2,9 @@
 #known bugs:
 #	*shell hitboxes aren't aligned with the images when facing backwards
 
+#add blocks
+#look at lines 165 and 246
+
 ## import modules
 import os, pygame, pygame.mixer, sys, glob, time, math, random
 ## import custom made modules 
@@ -159,6 +162,7 @@ magnetPlatformFrames,magnetPlatformDust = loadImages("magnetPlatformBlock",True)
 barsFrames,barsDust = loadImages("barsBlock",True)
 blackFrames,blackDust = loadImages("blackBlock",True)
 voidMistFrames,voidMistDust = loadImages("voidMistBlock",True)
+#[animationName]Frames,voidMistDust = loadImages("[animationName]Block",True)
 	
 ##create game world
 #the world is one large Surface
@@ -239,7 +243,8 @@ def levelGen(blocks,peds,file):
 				blocks.append(land.Land(tntFrames,x_loc,y_loc, tntDust, "bridge", "$",s.fuse3))
 			elif line[i] == "%":
 				blocks.append(land.Land(tntFrames,x_loc,y_loc, tntDust, "bridge", "%",s.fuse4))
-			# elif line[i] == "":
+			# if line[i] == "[symbol]":
+				# blocks.append(land.Land([animationName]Frames,x_loc,y_loc, [animationName]Dust, "[physics]", "[symbol]"))
 				
 			#weapons
 			elif line[i] == "0":
