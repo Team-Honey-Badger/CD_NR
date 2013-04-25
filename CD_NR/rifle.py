@@ -1,11 +1,13 @@
 #modification of sword class to support launching ranged projectiles and attack with the end of the weapon do to "recoil"
 
-import math,pygame,sounds
+import math,pygame,sounds, settings
+s=settings.Settings()
 pygame.mixer.pre_init(44100, -16, 2, 2048)
 pygame.init()
 
 class Rifle:
-	def __init__(self,frames,x,y,icon,endOfRifle,cooldownDuration,type = "user's"):
+	def __init__(self,frames,x,y,icon,endOfRifle,cooldownDuration,volume,type = "user's"):
+		self.volume = volume
 		self.type = type
 		self.icon = icon
 		self.active = False
@@ -72,9 +74,9 @@ class Rifle:
 			if start and not self.attacking and not self.cooldown:				
 				self.attacking = True
 				if self.endOfRifle == 3:
-					sounds.play('RifleShot')
+					sounds.play('RifleShot',self.volume)
 				elif self.endOfRifle == 2:
-					sounds.play('ShotgunShot')
+					sounds.play('ShotgunShot',self.volume)
 			if self.attacking and not self.retracting:				
 				self.currentFrame += 1				
 				if self.currentFrame == self.numFrames-1:
@@ -89,7 +91,7 @@ class Rifle:
 			if self.cooldown:
 				if self.cooldownTime == 13:
 					if self.endOfRifle == 2:
-						sounds.play('ShotgunPump')
+						sounds.play('ShotgunPump',self.volume)
 				if self.cooldownTime <= 0:
 					self.cooldown = False
 				else:

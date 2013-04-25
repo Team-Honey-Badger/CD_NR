@@ -8,31 +8,33 @@
 ## import modules
 import os, pygame, pygame.mixer, sys, glob, time, math, random
 ## import custom made modules 
-import land, mouse, player, sword, fist, spear, rifle, bullet, pellets, settings, sounds
+import land, mouse, player, sword, fist, spear, rifle, bullet, pellets, sounds, menu
 ## put commonly used in global namespace
 from pygame.locals import *
 pygame.init()
 
 pygame.display.set_caption("Collateral Damage: No Regrets!")
 clock = pygame.time.Clock()
-s = settings.Settings()
+#s = settings.Settings()
+s = menu.s
 random.seed()
 option = 0
 
 ##starting menu
 #asks the user for the resolution to run the game in
-while True:
-	try:
-		print("Select a resolution:\n1. 1600 x 800\n2. 1200 x 600\n3. 800 x 400\n4. Quit")
-		option = int(input())
-		if option == 1 or option == 2 or option == 3:
-			break
-		elif option == 4:
-			sys.exit()
-	except BaseException as e:
-		if isinstance(e,SystemExit):
-			sys.exit()
-		print "Error:\nSelect either 1, 2, 3, or 4\n"
+# while True:
+	# try:
+		# print("Select a resolution:\n1. 1600 x 800\n2. 1200 x 600\n3. 800 x 400\n4. Quit")
+		# option = int(input())
+		# if option == 1 or option == 2 or option == 3:
+			# break
+		# elif option == 4:
+			# sys.exit()
+	# except BaseException as e:
+		# if isinstance(e,SystemExit):
+			# sys.exit()
+		# print "Error:\nSelect either 1, 2, 3, or 4\n"
+		
 
 ##determine the scalar
 #images are scaled to match the resolution size
@@ -42,33 +44,37 @@ while True:
 #also, every time an image is moved, it has to move by a scaled amount
 #so that the movement is consistant in all resolutions
 #note: multiplication can substitute scaling, so u either multiply a number or add/subtract by a number*scalar
-if option == 1:
-	screenSize = width, height = 1600,800
-	scalar = 2
-elif option == 2:
-	screenSize = width, height = 1200,600
-	scalar = 1.5
-else:
-	screenSize = width, height = 800,400
-	scalar = 1
+# if option == 1:
+	# screenSize = width, height = 1600,800
+	# scalar = 2
+# elif option == 2:
+	# screenSize = width, height = 1200,600
+	# scalar = 1.5
+# else:
+	# screenSize = width, height = 800,400
+	# scalar = 1
+
+screenSize = width, height = s.resolution
+scalar = s.scalar
 
 ##fullscreen menu
-while True:
-	try:
-		print("Fullscreen?\n1. yes\n2. no\n3. Quit")
-		option = int(input())
-		if option == 1 or option == 2:
-			break
-		elif option == 3:
-			sys.exit()
-	except BaseException as e:
-		if isinstance(e,SystemExit):
-			sys.exit()
-		print "Error:\nSelect either 1, 2, or 3\n"
+# while True:
+	# try:
+		# print("Fullscreen?\n1. yes\n2. no\n3. Quit")
+		# option = int(input())
+		# if option == 1 or option == 2:
+			# break
+		# elif option == 3:
+			# sys.exit()
+	# except BaseException as e:
+		# if isinstance(e,SystemExit):
+			# sys.exit()
+		# print "Error:\nSelect either 1, 2, or 3\n"
 
+option = s.fullscreen
 if option == 1:
 	screen = pygame.display.set_mode(screenSize,  pygame.FULLSCREEN|pygame.DOUBLEBUF|pygame.HWSURFACE) 
-elif option == 2:
+else:
 	screen = pygame.display.set_mode(screenSize)
 	
 font = pygame.font.SysFont("Comic Sans MS", int(10*scalar))
@@ -182,8 +188,8 @@ user = player.Player(sampleBlock.size*22,200*scalar,AIHeadFrames,chestFrames,fee
 fist = fist.Fist(fistFrames,0,0)
 goldSword = sword.Sword(goldSwordFrames,sampleBlock.size*1,160*scalar,swordCoin,s.swordCoolDown)
 longSpear = spear.Spear(spearFrames,sampleBlock.size*1,160*scalar,spearCoin,s.spearCoolDown)
-akRifle = rifle.Rifle(akRifleFrames,sampleBlock.size*1,160*scalar,rifleCoin,3,s.akCoolDown)
-shotGun = rifle.Rifle(shotGunFrames,sampleBlock.size*1,160*scalar,shotGunCoin,2,s.shotgunCoolDown)
+akRifle = rifle.Rifle(akRifleFrames,sampleBlock.size*1,160*scalar,rifleCoin,3,s.akCoolDown,s.volume)
+shotGun = rifle.Rifle(shotGunFrames,sampleBlock.size*1,160*scalar,shotGunCoin,2,s.shotgunCoolDown,s.volume)
 portal = land.Land(portalFrames,sampleBlock.size*1,170*scalar, portalDust, "stone")
 portal.rect = portal.rect.inflate(-60*scalar,0)
 
@@ -279,12 +285,12 @@ def levelGen(blocks,peds,file):
 				pedWeapons.append(weapon)
 			elif line[i] == "e":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
-				weapon = rifle.Rifle(shotGunFrames,sampleBlock.size*30,160*scalar,shotGunCoin,2,s.shotgunCoolDownAI,"sg")
+				weapon = rifle.Rifle(shotGunFrames,sampleBlock.size*30,160*scalar,shotGunCoin,2,s.shotgunCoolDownAI,s.volume,"sg")
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "r":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
-				weapon = rifle.Rifle(akRifleFrames,sampleBlock.size*40,160*scalar,rifleCoin,3,s.akCoolDownAI,"ak")
+				weapon = rifle.Rifle(akRifleFrames,sampleBlock.size*40,160*scalar,rifleCoin,3,s.akCoolDownAI,s.volume,"ak")
 				weapon.active = True
 				pedWeapons.append(weapon)
 			# elif line[i] == "":
@@ -304,7 +310,7 @@ def levelGen(blocks,peds,file):
 def main():
 	yolo = 0
 	##various variables that don't reset every frame
-	filenames = os.path.join( 'maps', "level*.txt" ) #put all the level text files in one list
+	filenames = os.path.join( s.mapsFolder, "level*.txt" ) #put all the level text files in one list
 	maps = glob.glob(filenames)
 	maps.sort()
 	level = s.startingLevel
@@ -329,7 +335,7 @@ def main():
 	deletePedBulletsList = []
 	deletePedPelletsList = []
 	
-	sounds.loop('Background')	
+	sounds.loop('Background',s)	
 	
 	while True:		
 		clock.tick(fps)
@@ -854,10 +860,13 @@ def main():
 			if user.headRect.colliderect(portal.rect) or user.chestRect.colliderect(portal.rect) or user.feetRect.colliderect(portal.rect):
 				level += 1
 				if level == len(maps):
-					print "You Won!"
+					screen.blit(font.render("You have won!", 1, (0,200,0)), (340*scalar,50*scalar))
+					pygame.display.flip()
+					pygame.time.wait(20000)
 					sys.exit()
 				else:
 					pedCount,pedWeapons = levelGen(blocks,peds,maps[level])
+					continue
 		
 		##object erasing
 		for block in deleteList:
@@ -1017,8 +1026,13 @@ def main():
 							user.feetAt+=s.pedsMeleeDmgToUsersFeet
 		
 		if user.y > world_height or user.dead:
-			print "You Lost!",world_height/sampleBlock.size, world_width/sampleBlock.size
-			sys.exit()
+			screen.blit(font.render("Wait To Respawn!", 1, (200,0,0)), (340*scalar,50*scalar))
+			pygame.display.flip()
+			pygame.time.wait(10000)
+			pedCount,pedWeapons = levelGen(blocks,peds,maps[level])
+			user.update(False,False,False,0,0,0,1)
+			user.dead = False
+			continue
 		
 		##show hitboxes
 		#doesn't show ped hitboxes yet
@@ -1063,10 +1077,10 @@ def main():
 		
 		##display a message on the screen
 		if not message is None:
-			screen.blit(message, (380*scalar,50*scalar))
+			screen.blit(message, (340*scalar,50*scalar))
 		pygame.display.flip()
 		if not message is None: #dat grammar :D
-			pygame.time.wait(3000)
+			pygame.time.wait(6000)
 
 
 ## this calls the 'main' function when this script is executed

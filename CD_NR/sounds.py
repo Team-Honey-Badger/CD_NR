@@ -1,7 +1,7 @@
 
 
-import pygame,os,settings
-s = settings.Settings()
+import pygame,os
+#s = settings.Settings()
 pygame.mixer.pre_init(44100, -16, 2, 2048)
 pygame.init()
 pygame.mixer.set_num_channels(100)
@@ -26,12 +26,13 @@ soundEffects['MonsterHorseScream'] = os.path.join('enemy','MonsterHorseScream.mp
 soundEffects['MonsterHorseScream2'] = os.path.join('enemy','MonsterHorseScream2.mp3')
 soundEffects['MonsterScreech'] = os.path.join('enemy','MonsterScreech.mp3')
 
-def play(soundName):
+def play(soundName, volume):
 	sound = pygame.mixer.Sound(os.path.join('sounds', soundEffects[soundName]))
-	sound.set_volume(s.volume)
+	sound.set_volume(volume)
 	sound.play(0)
 	
-def loop(soundName):
+def loop(soundName, s):
 	sound = pygame.mixer.music.load(os.path.join('sounds', soundEffects[soundName]))
+	pygame.mixer.music.set_volume(s.volume)
 	pygame.mixer.music.play(-1)
 		

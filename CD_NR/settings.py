@@ -11,10 +11,10 @@ class Settings:
 		self.spearCoolDown = 1
 		self.shotgunCoolDown = 15
 		self.akCoolDown = 0
-		self.swordCoolDownAI = 100 
-		self.spearCoolDownAI = 100
-		self.shotgunCoolDownAI = 100
-		self.akCoolDownAI = 100
+		self.swordCoolDownAI = 10
+		self.spearCoolDownAI = 10
+		self.shotgunCoolDownAI = 30
+		self.akCoolDownAI = 10
 		
 		##engine tweaks
 		self.startingLevel = 0
@@ -54,9 +54,9 @@ class Settings:
 		self.bulletDmgToPedsChest = 5
 		self.bulletDmgToPedsFeet = 5
 		self.bulletDmgToBlocks = 1
-		self.pelletDmgToPedsHead = 1
-		self.pelletDmgToPedsChest = 1
-		self.pelletDmgToPedsFeet = 1
+		self.pelletDmgToPedsHead = 2
+		self.pelletDmgToPedsChest = 2
+		self.pelletDmgToPedsFeet = 2
 		
 		##AI behavior
 		self.swordPedsMinRangeFromUser = 40
@@ -102,8 +102,12 @@ class Settings:
 		self.fuse3 = 300
 		self.fuse4 = 400
 		
-		##sound
+		##menu
 		self.volume = 1.0
+		self.resolution = 800,400
+		self.scalar = 1
+		self.fullscreen = 0
+		self.mapsFolder = "storyMaps"
 		
 		##commented out
 		# self. = 
