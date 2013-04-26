@@ -145,6 +145,7 @@ feetFrames = loadImages("newLegs")
 snowmanHeadFrames = loadImages("snowmanHead")
 snowmanChestFrames = loadImages("snowmanChest")
 goldSwordFrames = loadImages("goldSword")
+stickFrames = loadImages("stick")
 swordCoin = loadImage("swordCoin")
 fistFrames = loadImages("fist")
 spearFrames = loadImages("spear")
@@ -284,7 +285,7 @@ def levelGen(blocks,peds,file):
 			#AI
 			elif line[i] == "s":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,snowmanHeadFrames,snowmanChestFrames,snowmanChestFrames,scalar))
-				weapon = sword.Sword(goldSwordFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
+				weapon = sword.Sword(stickFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "q":
