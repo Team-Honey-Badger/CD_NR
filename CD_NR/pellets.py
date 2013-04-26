@@ -30,7 +30,7 @@ class Pellets:
 		self.pelletActive = True
 		self.shellActive = True
 		self.impact = False
-		self.pelletSpeed = 20
+		self.pelletSpeed = 15
 		self.shellFalling = True
 		self.time = 0
 		self.shellAngleSpin = 0

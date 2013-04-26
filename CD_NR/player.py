@@ -57,12 +57,15 @@ class Player:
 		self.jumpDuration = 0
 		
 	def draw(self,world):
-		world.blit(self.head[self.headAt],(self.headX,self.headY))
-		world.blit(self.feet[self.feetAt],(self.feetX,self.feetY))
-		world.blit(self.chest[self.chestAt],(self.chestX,self.chestY))
+		if self.headAt > self.headLen-1 or self.chestAt > self.chestLen-1 or self.feetAt > self.feetLen-1:
+			self.dead = True
+		if not self.dead:
+			world.blit(self.head[self.headAt],(self.headX,self.headY))
+			world.blit(self.feet[self.feetAt],(self.feetX,self.feetY))
+			world.blit(self.chest[self.chestAt],(self.chestX,self.chestY))
 	
 	def update(self,jump,left,right,headCollisions,topCollisions,chestCollisions,feetCollisions):
-		if self.headAt == self.headLen-1 or self.chestAt == self.chestLen-1 or self.feetAt == self.feetLen-1:
+		if self.headAt >= self.headLen-1 or self.chestAt >= self.chestLen-1 or self.feetAt >= self.feetLen-1:
 			self.dead = True
 		##bouncing
 		if chestCollisions < 1:

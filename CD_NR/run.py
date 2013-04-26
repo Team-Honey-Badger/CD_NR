@@ -142,6 +142,8 @@ headFrames = loadImages("newHead")
 AIHeadFrames = loadImages("AIHead")
 chestFrames = loadImages("newChest")
 feetFrames = loadImages("newLegs")
+snowmanHeadFrames = loadImages("snowmanHead")
+snowmanChestFrames = loadImages("snowmanChest")
 goldSwordFrames = loadImages("goldSword")
 swordCoin = loadImage("swordCoin")
 fistFrames = loadImages("fist")
@@ -167,7 +169,10 @@ invisibleFrames,invisibleDust = loadImages("invisibleBlock",True)
 magnetPlatformFrames,magnetPlatformDust = loadImages("magnetPlatformBlock",True)
 barsFrames,barsDust = loadImages("barsBlock",True)
 blackFrames,blackDust = loadImages("blackBlock",True)
+iceFrames,iceDust = loadImages("iceBlock",True)
+snowFrames,snowDust = loadImages("snowBlock",True)
 voidMistFrames,voidMistDust = loadImages("voidMistBlock",True)
+
 #[animationName]Frames,voidMistDust = loadImages("[animationName]Block",True)
 	
 ##create game world
@@ -217,6 +222,10 @@ def levelGen(blocks,peds,file):
 				blocks.append(land.Land(crateFrames,x_loc,y_loc, crateDust, "stone", "C"))
 			elif line[i] == "D":
 				blocks.append(land.Land(dirtFrames,x_loc,y_loc, dirtDust, "stone", "D"))
+			elif line[i] == "I":
+				blocks.append(land.Land(iceFrames,x_loc,y_loc, iceDust, "stone", "I"))
+			elif line[i] == "O":
+				blocks.append(land.Land(snowFrames,x_loc,y_loc, snowDust, "stone", "O"))
 			elif line[i] == "S":
 				blocks.append(land.Land(stoneFrames,x_loc,y_loc, stoneDust, "stone", "S"))
 			elif line[i] == "T":
@@ -273,6 +282,11 @@ def levelGen(blocks,peds,file):
 				portal.reset(x_loc,y_loc)
 			
 			#AI
+			elif line[i] == "s":
+				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,snowmanHeadFrames,snowmanChestFrames,snowmanChestFrames,scalar))
+				weapon = sword.Sword(goldSwordFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
+				weapon.active = True
+				pedWeapons.append(weapon)
 			elif line[i] == "q":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
 				weapon = sword.Sword(goldSwordFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
