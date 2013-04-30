@@ -174,6 +174,7 @@ blackFrames,blackDust = loadImages("blackBlock",True)
 iceFrames,iceDust = loadImages("iceBlock",True)
 snowFrames,snowDust = loadImages("snowBlock",True)
 voidMistFrames,voidMistDust = loadImages("voidMistBlock",True)
+gravelFrames,gravelDust = loadImages("Gravel",True)
 
 #[animationName]Frames,voidMistDust = loadImages("[animationName]Block",True)
 	
@@ -222,6 +223,8 @@ def levelGen(blocks,peds,file):
 				blocks.append(land.Land(bridgeFrames,x_loc,y_loc, bridgeDust, "bridge", "B"))
 			elif line[i] == "C":
 				blocks.append(land.Land(crateFrames,x_loc,y_loc, crateDust, "stone", "C"))
+			elif line[i] == "G":
+				blocks.append(land.Land(crateFrames,x_loc,y_loc, crateDust, "leaf", "G"))
 			elif line[i] == "D":
 				blocks.append(land.Land(dirtFrames,x_loc,y_loc, dirtDust, "stone", "D"))
 			elif line[i] == "I":
