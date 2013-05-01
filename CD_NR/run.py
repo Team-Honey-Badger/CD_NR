@@ -224,7 +224,7 @@ def levelGen(blocks,peds,file):
 			elif line[i] == "C":
 				blocks.append(land.Land(crateFrames,x_loc,y_loc, crateDust, "stone", "C"))
 			elif line[i] == "G":
-				blocks.append(land.Land(crateFrames,x_loc,y_loc, crateDust, "leaf", "G"))
+				blocks.append(land.Land(gravelFrames,x_loc,y_loc, gravelDust, "leaf", "G"))
 			elif line[i] == "D":
 				blocks.append(land.Land(dirtFrames,x_loc,y_loc, dirtDust, "stone", "D"))
 			elif line[i] == "I":
