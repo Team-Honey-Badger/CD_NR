@@ -581,7 +581,7 @@ def main():
 					pNum += 1
 					if p.x < user.x + 1100*scalar and p.x > user.x - 300 * scalar:
 						if not block.broken:
-							if not block.falling:
+							if not block.falling and block.type != "=":
 								if pedFeetCollisions[pNum] == 0:
 									if not p.jumping:
 										if p.feetRect.colliderect(block.rect):
