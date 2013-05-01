@@ -1,10 +1,11 @@
 #modification of sword class for a double sized image and ajusted range
 
-import math,pygame
+import math,pygame,sounds
 pygame.init()
 
 class Spear:
-	def __init__(self,frames,x,y,icon,cooldownDuration,type = "spear"):
+	def __init__(self,frames,x,y,icon,cooldownDuration,volume,type = "spear"):
+		self.volume = volume
 		self.type = type
 		self.icon = icon
 		self.active = False
@@ -59,6 +60,7 @@ class Spear:
 			self.angle = math.degrees(math.atan2(dx,dy)) - 135
 			
 			if start and not self.attacking and not self.cooldown:
+				sounds.play('SpearThrow',self.volume)
 				self.attacking = True
 			if self.attacking and not self.retracting:
 				self.currentFrame += 1

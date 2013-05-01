@@ -194,8 +194,8 @@ testBox = mouse.Mouse(pygame.mouse.get_pos(),0,0,mouseBlockImage)
 sampleBlock = land.Land(dirtFrames,0,0, stoneDust, "joint")
 user = player.Player(sampleBlock.size*22,200*scalar,headFrames,chestFrames,feetFrames,scalar)
 fist = fist.Fist(fistFrames,0,0)
-goldSword = sword.Sword(goldSwordFrames,sampleBlock.size*1,160*scalar,swordCoin,s.swordCoolDown)
-longSpear = spear.Spear(spearFrames,sampleBlock.size*1,160*scalar,spearCoin,s.spearCoolDown)
+goldSword = sword.Sword(goldSwordFrames,sampleBlock.size*1,160*scalar,swordCoin,s.swordCoolDown,s.volume)
+longSpear = spear.Spear(spearFrames,sampleBlock.size*1,160*scalar,spearCoin,s.spearCoolDown,s.volume)
 akRifle = rifle.Rifle(akRifleFrames,sampleBlock.size*1,160*scalar,rifleCoin,3,s.akCoolDown,s.volume)
 shotGun = rifle.Rifle(shotGunFrames,sampleBlock.size*1,160*scalar,shotGunCoin,2,s.shotgunCoolDown,s.volume)
 portal = land.Land(portalFrames,sampleBlock.size*1,170*scalar, portalDust, "stone")
@@ -289,17 +289,17 @@ def levelGen(blocks,peds,file):
 			#AI
 			elif line[i] == "s":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,snowmanHeadFrames,snowmanChestFrames,snowmanChestFrames,scalar))
-				weapon = sword.Sword(stickFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
+				weapon = sword.Sword(stickFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI,s.volume)
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "q":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
-				weapon = sword.Sword(goldSwordFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI)
+				weapon = sword.Sword(goldSwordFrames,sampleBlock.size*60,160*scalar,swordCoin,s.swordCoolDownAI,s.volume)
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "w":
 				peds.append(player.Player(x_loc,y_loc-sampleBlock.size*3,AIHeadFrames,chestFrames,feetFrames,scalar))
-				weapon = spear.Spear(spearFrames,sampleBlock.size*23,160*scalar,spearCoin,s.spearCoolDownAI)
+				weapon = spear.Spear(spearFrames,sampleBlock.size*23,160*scalar,spearCoin,s.spearCoolDownAI,s.volume)
 				weapon.active = True
 				pedWeapons.append(weapon)
 			elif line[i] == "e":
@@ -353,8 +353,10 @@ def main():
 	pedPelletsList = []
 	deletePedBulletsList = []
 	deletePedPelletsList = []
+	volume = s.volume
 	
-	sounds.loop('Background',s)	
+	sounds.loop('Background',s)
+	#sounds.play('',volume)	
 	
 	while True:		
 		clock.tick(fps)
@@ -760,56 +762,71 @@ def main():
 			for p in peds:
 				if p.headAt < p.headLen-1:
 					if goldSword.rect.colliderect(p.headRect):
+						sounds.play('EnemyHit',volume)
 						p.headAt+=s.swordDmgToPedsHead
 				if p.chestAt < p.chestLen-1:
 					if goldSword.rect.colliderect(p.chestRect):
+						sounds.play('EnemyHit',volume)
 						p.chestAt+=s.swordDmgToPedsChest
 				if p.feetAt < p.feetLen-1:
 					if goldSword.rect.colliderect(p.feetRect):
+						sounds.play('EnemyHit',volume)
 						p.feetAt+=s.swordDmgToPedsFeet
 		if longSpear.attacking:
 			for p in peds:
 				if p.headAt < p.headLen-1:
 					if longSpear.rect.colliderect(p.headRect):
+						sounds.play('EnemyHit',volume)
 						p.headAt+=s.spearDmgToPedsHead
 				if p.chestAt < p.chestLen-1:
 					if longSpear.rect.colliderect(p.chestRect):
+						sounds.play('EnemyHit',volume)
 						p.chestAt+=s.spearDmgToPedsChest
 				if p.feetAt < p.feetLen-1:
 					if longSpear.rect.colliderect(p.feetRect):
+						sounds.play('EnemyHit',volume)
 						p.feetAt+=s.spearDmgToPedsFeet
 		if fist.attacking:
 			for p in peds:
 				if p.headAt < p.headLen-1:
 					if fist.rect.colliderect(p.headRect):
+						sounds.play('EnemyHit',volume)
 						p.headAt+=s.fistDmgToPedsHead
 				if p.chestAt < p.chestLen-1:
 					if fist.rect.colliderect(p.chestRect):
+						sounds.play('EnemyHit',volume)
 						p.chestAt+=s.fistDmgToPedsChest
 				if p.feetAt < p.feetLen-1:
 					if fist.rect.colliderect(p.feetRect):
+						sounds.play('EnemyHit',volume)
 						p.feetAt+=s.fistDmgToPedsFeet
 		if akRifle.attacking: #hit with end of rifle
 			for p in peds:
 				if p.headAt < p.headLen-1:
 					if akRifle.rect.colliderect(p.headRect):
+						sounds.play('EnemyHit',volume)
 						p.headAt+=s.akRifleMeleeDmgToPedsHead
 				if p.chestAt < p.chestLen-1:
 					if akRifle.rect.colliderect(p.chestRect):
+						sounds.play('EnemyHit',volume)
 						p.chestAt+=s.akRifleMeleeDmgToPedsChest
 				if p.feetAt < p.feetLen-1:
 					if akRifle.rect.colliderect(p.feetRect):
+						sounds.play('EnemyHit',volume)
 						p.feetAt+=s.akRifleMeleeDmgToPedsFeet
 		if shotGun.attacking: #hit with end of rifle
 			for p in peds:
 				if p.headAt < p.headLen-1:
 					if shotGun.rect.colliderect(p.headRect):
+						sounds.play('EnemyHit',volume)
 						p.headAt+=s.shotgunMeleeDmgToPedsHead
 				if p.chestAt < p.chestLen-1:
 					if shotGun.rect.colliderect(p.chestRect):
+						sounds.play('EnemyHit',volume)
 						p.chestAt+=s.shotgunMeleeDmgToPedsChest
 				if p.feetAt < p.feetLen-1:
 					if shotGun.rect.colliderect(p.feetRect):
+						sounds.play('EnemyHit',volume)
 						p.feetAt+=s.shotgunMeleeDmgToPedsFeet
 						
 		#check if any bullet collides with any ped
@@ -821,14 +838,17 @@ def main():
 					if item.bx < p.x + 50*scalar and item.bx > p.x - 50 * scalar:
 						if p.headAt < p.headLen-1:
 							if item.bulletRect.colliderect(p.headRect):
+								sounds.play('EnemyHit',volume)
 								p.headAt+=s.bulletDmgToPedsHead
 								item.impact = True
 						if p.chestAt < p.chestLen-1:
 							if item.bulletRect.colliderect(p.chestRect):
+								sounds.play('EnemyHit',volume)
 								p.chestAt+=s.bulletDmgToPedsChest
 								item.impact = True
 						if p.feetAt < p.feetLen-1:
 							if item.bulletRect.colliderect(p.feetRect):
+								sounds.play('EnemyHit',volume)
 								p.feetAt+=s.bulletDmgToPedsFeet
 								item.impact = True
 				# if item.bulletRect.colliderect(block.rect):
@@ -853,14 +873,17 @@ def main():
 							if p.x < user.x + 1100*scalar and p.x > user.x - 300 * scalar:
 								if p.headAt < p.headLen-1:
 									if item.pelletRects[i].colliderect(p.headRect):
+										sounds.play('EnemyHit',volume)
 										p.headAt+=s.pelletDmgToPedsHead
 										item.impacts[i] = True
 								if p.chestAt < p.chestLen-1:
 									if item.pelletRects[i].colliderect(p.chestRect):
+										sounds.play('EnemyHit',volume)
 										p.chestAt+=s.pelletDmgToPedsChest
 										item.impacts[i] = True
 								if p.feetAt < p.feetLen-1:
 									if item.pelletRects[i].colliderect(p.feetRect):
+										sounds.play('EnemyHit',volume)
 										p.feetAt+=s.pelletDmgToPedsFeet
 										item.impacts[i] = True
 				if item.shellActive:
@@ -969,6 +992,13 @@ def main():
 				#erase the ped if he died or falls off the map
 				if p.y > world_height or p.dead:
 					peds.remove(p)
+					deathSound = random.randrange(3)
+					if deathSound == 0:
+						sounds.play('InsectScreech',volume)
+					elif deathSound == 1:
+						sounds.play('MonsterScreech',volume)
+					else:
+						sounds.play('AlienScream',volume)
 					del pedWeapons[pNum]
 		
 		##update and draw projectiles
@@ -987,14 +1017,17 @@ def main():
 				if item.bx < user.x + 50*scalar and item.bx > user.x - 50 * scalar:
 					if user.headAt < user.headLen-1:
 						if item.bulletRect.colliderect(user.headRect):
+							sounds.play('PlayerHit',volume)
 							user.headAt+=s.pedsBulletDmgToUsersHead
 							item.impact = True
 					if user.chestAt < user.chestLen-1:
 						if item.bulletRect.colliderect(user.chestRect):
+							sounds.play('PlayerHit',volume)
 							user.chestAt+=s.pedsBulletDmgToUsersChest
 							item.impact = True
 					if user.feetAt < user.feetLen-1:
 						if item.bulletRect.colliderect(user.feetRect):
+							sounds.play('PlayerHit',volume)
 							user.feetAt+=s.pedsBulletDmgToUsersFeet
 							item.impact = True
 					# for block in blocks:
@@ -1014,14 +1047,17 @@ def main():
 						if user.x < user.x + 1100*scalar and user.x > user.x - 300 * scalar:
 							if user.headAt < user.headLen-1:
 								if item.pelletRects[i].colliderect(user.headRect):
+									sounds.play('PlayerHit',volume)
 									user.headAt+=s.pedsPelletDmgToUsersHead
 									item.impacts[i] = True
 							if user.chestAt < user.chestLen-1:
 								if item.pelletRects[i].colliderect(user.chestRect):
+									sounds.play('PlayerHit',volume)
 									user.chestAt+=s.pedsPelletDmgToUsersChest
 									item.impacts[i] = True
 							if user.feetAt < user.feetLen-1:
 								if item.pelletRects[i].colliderect(user.feetRect):
+									sounds.play('PlayerHit',volume)
 									user.feetAt+=s.pedsPelletDmgToUsersFeet
 									item.impacts[i] = True
 				if not item.shellActive:
@@ -1036,15 +1072,19 @@ def main():
 				if pedWeapons[pNum].attacking:
 					if user.headAt < user.headLen-1:
 						if pedWeapons[pNum].rect.colliderect(user.headRect):
+							sounds.play('PlayerHit',volume)
 							user.headAt+=s.pedsMeleeDmgToUsersHead
 					if user.chestAt < user.chestLen-1:
 						if pedWeapons[pNum].rect.colliderect(user.chestRect):
+							sounds.play('PlayerHit',volume)
 							user.chestAt+=s.pedsMeleeDmgToUsersChest
 					if user.feetAt < user.feetLen-1:
 						if pedWeapons[pNum].rect.colliderect(user.feetRect):
+							sounds.play('PlayerHit',volume)
 							user.feetAt+=s.pedsMeleeDmgToUsersFeet
 		
 		if user.y > world_height or user.dead:
+			sounds.play('PlayerDeath',volume)
 			screen.blit(font.render("Wait To Respawn!", 1, (200,0,0)), (340*scalar,50*scalar))
 			pygame.display.flip()
 			pygame.time.wait(10000)

@@ -1,6 +1,6 @@
 #modification of sword class to support launching ranged projectiles and attack with the end of the weapon do to "recoil"
 
-import math,pygame,sounds, settings
+import math,pygame,sounds,settings
 s=settings.Settings()
 pygame.mixer.pre_init(44100, -16, 2, 2048)
 pygame.init()

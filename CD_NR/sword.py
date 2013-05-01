@@ -1,10 +1,11 @@
 #original class for a short range melee weapon with "grab and drop" capablities
 
-import math,pygame
+import math,pygame,sounds
 pygame.init()
 
 class Sword:
-	def __init__(self,frames,x,y,icon,cooldownDuration,type = "sword"):
+	def __init__(self,frames,x,y,icon,cooldownDuration,volume,type = "sword"):
+		self.volume = volume
 		self.type = type
 		self.icon = icon
 		self.active = False
@@ -58,6 +59,7 @@ class Sword:
 			self.angle = math.degrees(math.atan2(dx,dy)) - 135
 			
 			if start and not self.attacking and not self.cooldown:
+				sounds.play('SwordSwing',self.volume)
 				self.attacking = True
 			if self.attacking and not self.retracting:
 				self.currentFrame += 1
