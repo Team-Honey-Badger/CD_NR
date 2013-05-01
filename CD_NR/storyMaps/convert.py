@@ -1,5 +1,7 @@
 import fileinput, sys, os
 
+#Opens up temp file and copies only data portion into temp file
+
 fileInput = raw_input("Input file name?: ")
 fileOutput = raw_input("Output file name?: ")
 
@@ -14,24 +16,33 @@ for i in range(38,107):
 	
 f1.close()
 f2.close()
-	
+
+#Open temp file to convert from the data portion to usable text file
 f1 = open('temp.txt', 'r')
 f2 = open(fileOutput,'w')
 
 c = f1.read()
+
+#''' Replacement Definitions '''#
+
+numToReplace = ['4','5','6','7','8','9','10','11',
+	'12','13','14','15','16','17','18','19','20','21',
+	'22','23','24','25','26','27','28','29','30','31',
+	'32','33','34','35','36']
+
+replacementChars = ['B','C','D','S','T','R','L','=','_',
+	'|','/','\\','@','#','$','%','X','J','V','I','O','0',
+	'1','2','3','<','>','q','w','e','r','s','G']
+
+#'''						 '''#
+
+for char, rep in zip(numToReplace,replacementChars):
+	c = c.replace(char,rep)
+
 c = c.replace(',','')	#Getting rid of commas
 c = c.replace('0','-')	#Converting 0s to -s
 c = c.replace('0 ','-')	
 c = c.replace(' ','')	#Getting rid of whitespace
-
-
-c = c.replace('2','R')	#Replace 2 with bricks
-c = c.replace('3','B')	#Replace 3 with Bridges
-c = c.replace('4','C')	#Replace 4 with crates
-c = c.replace('5','D')	#Replace 5 with dirt
-
-c = c.replace('7','S')	#Replace 7 with stone
-c = c.replace('8','T')	#Replace 8 with tree?
 
 f2.write(c)
 

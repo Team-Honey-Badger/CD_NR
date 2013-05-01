@@ -11,20 +11,23 @@ soundEffects = {}
 #ambience sound effects
 soundEffects['Background'] = os.path.join('ambience','Background.mp3')
 
-#Gun sound effects
-soundEffects['RifleShot'] = os.path.join('guns','RifleShot.wav')
-soundEffects['ShotgunShot'] = os.path.join('guns','ShotgunShot.wav')
-soundEffects['ShotgunPump'] = os.path.join('guns','ShotgunPump.wav')
+#Weapon sound effects
+soundEffects['RifleShot'] = os.path.join('weapons','RifleShot.wav')
+soundEffects['ShotgunShot'] = os.path.join('weapons','ShotgunShot.wav')
+soundEffects['ShotgunPump'] = os.path.join('weapons','ShotgunPump.wav')
+soundEffects['SwordSwing'] = os.path.join('weapons','SwordSwing.wav')
+soundEffects['SpearThrow'] = os.path.join('weapons','SpearThrow.wav')
 
 #Player sound effects
-soundEffects['PlayerHit'] = os.path.join('player','PlayerHit.mp3')
+soundEffects['PlayerHit'] = os.path.join('player','PlayerHit.wav')
+soundEffects['PlayerDeath'] = os.path.join('player','PlayerDeath.wav')
 
 #Monster and enemy sound effects
-soundEffects['AlienScream'] = os.path.join('enemy','AlienScream.mp3')
-soundEffects['InsectScreech'] = os.path.join('enemy','InsectScreech.mp3')
-soundEffects['MonsterHorseScream'] = os.path.join('enemy','MonsterHorseScream.mp3')
-soundEffects['MonsterHorseScream2'] = os.path.join('enemy','MonsterHorseScream2.mp3')
-soundEffects['MonsterScreech'] = os.path.join('enemy','MonsterScreech.mp3')
+soundEffects['AlienScream'] = os.path.join('enemy','AlienScream.wav')
+soundEffects['InsectScreech'] = os.path.join('enemy','InsectScreech.wav')
+soundEffects['MonsterScreech'] = os.path.join('enemy','MonsterScreech.wav')
+soundEffects['EnemyHit'] = os.path.join('enemy','EnemyHit.wav')
+soundEffects['InsectPain'] = os.path.join('enemy','InsectPain.wav')
 
 def play(soundName, volume):
 	sound = pygame.mixer.Sound(os.path.join('sounds', soundEffects[soundName]))
