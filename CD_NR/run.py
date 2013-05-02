@@ -1,9 +1,10 @@
 ##dev log
 #known bugs:
-#	*shell hitboxes aren't aligned with the images when facing backwards
-
-#add blocks
-#look at lines 165 and 246
+# *shell hitboxes aren't aligned with the images when facing backwards
+# *middle resolution uses a float, causing issues while riding platforms
+# *projectiles have a chance to go through a hitbox because they move several pixels at a time
+# *platforms cannot be combined into larger platforms
+# *can't play all sounds at once, some get skipped
 
 ## import modules
 import os, pygame, pygame.mixer, sys, glob, time, math, random
@@ -364,6 +365,7 @@ def main():
 		yolo += 1
 		
 		##resetting variables
+		skipLevel = False
 		damage = 0
 		damages = []
 		pedHeadCollisions,pedChestCollisions,pedFeetCollisions,pedTopCollisions = [],[],[],[]
@@ -403,7 +405,8 @@ def main():
 				message = font.render("Screenshot Taken!", 1, (255,255,255))
 			elif event.type == KEYDOWN and event.key == K_q:
 				drop = True
-			# elif event.type == KEYDOWN and event.key == K_j: #debugging
+			elif event.type == KEYDOWN and event.key == K_j:
+				skipLevel = True
 				# print "weapons:",len(pedWeapons)
 				# print "peds:",len(peds)
 				#for w in pedWeapons:
@@ -439,10 +442,10 @@ def main():
 			# world_x += world_dx
 		# if pressed[K_RIGHT]:
 			# world_x -= world_dx
-		if pressed[K_j]:
-			skipLevel = True
-		else:
-			skipLevel = False
+		# if pressed[K_j]:
+			# skipLevel = True
+		# else:
+			# skipLevel = False
 		if pressed[K_g]:
 			fps = s.slowMoFPS
 		else:
@@ -941,9 +944,9 @@ def main():
 		
 		##update the user
 		if ridingHor:
-			user.teleport(user.x+s.horizontalPlatformSpeed*2*ridingHorDirection,user.y)
+			user.teleport(user.x+s.horizontalPlatformSpeed*scalar*ridingHorDirection,user.y)
 		if ridingVer:
-			user.teleport(user.x,user.y+s.verticalPlatformSpeed*2*ridingVerDirection)
+			user.teleport(user.x,user.y+s.verticalPlatformSpeed*scalar*ridingVerDirection)
 		user.update(jump,left,right,headCollisions,topCollisions,chestCollisions,feetCollisions)
 		
 		##ped AI and updating
