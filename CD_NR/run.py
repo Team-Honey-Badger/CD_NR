@@ -910,7 +910,7 @@ def main():
 				if level == len(maps):
 					screen.blit(font.render("You have won!", 1, (0,200,0)), (340*scalar,50*scalar))
 					pygame.display.flip()
-					pygame.time.wait(20000)
+					pygame.time.wait(10000)
 					sys.exit()
 				else:
 					pedCount,pedWeapons = levelGen(blocks,peds,maps[level])
@@ -998,7 +998,7 @@ def main():
 				#erase the ped if he died or falls off the map
 				if p.y > world_height or p.dead:
 					peds.remove(p)
-					deathSound = random.randrange(3)
+					deathSound = random.randrange(3) #play a random noise when they die
 					if deathSound == 0:
 						sounds.play('InsectScreech',volume)
 					elif deathSound == 1:
@@ -1093,7 +1093,7 @@ def main():
 			sounds.play('PlayerDeath',volume)
 			screen.blit(font.render("Wait To Respawn!", 1, (200,0,0)), (340*scalar,50*scalar))
 			pygame.display.flip()
-			pygame.time.wait(10000)
+			pygame.time.wait(5000)
 			pedCount,pedWeapons = levelGen(blocks,peds,maps[level])
 			user.update(False,False,False,0,0,0,1)
 			user.dead = False
