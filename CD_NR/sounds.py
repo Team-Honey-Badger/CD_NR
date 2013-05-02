@@ -2,9 +2,10 @@
 
 import pygame,os
 #s = settings.Settings()
-pygame.mixer.pre_init(44100, -16, 2, 2048)
+pygame.mixer.init(44100, -16, 2, 2048)
+pygame.mixer.set_num_channels(200)
 pygame.init()
-pygame.mixer.set_num_channels(100)
+
 
 soundEffects = {}
 
