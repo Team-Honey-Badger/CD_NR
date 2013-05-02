@@ -10,7 +10,7 @@ f2 = open('temp.txt', 'w')
 
 lines = f1.readlines()
 
-for i in range(38,108):
+for i in range(37,107):
 	d = lines[i]
 	f2.write(d)
 	
