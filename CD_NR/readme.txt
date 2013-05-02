@@ -57,6 +57,18 @@ in my opinion was the .txt to game level converter, this allowed easy creation o
 This greatly extends the game's life span, and makes it more fun to a creative audience since the actual game doesn't nessassarily
 compare to the kinds of Indie games you buy online and Steam, so the more hardcore audience will just pass it by. 
 
+=====================Known Bugs=========================
+
+# *shell hitboxes aren't aligned with the images when facing backwards
+
+# *middle resolution uses a float, causing issues while riding platforms that cannot be fixed
+
+# *projectiles have a chance to go through a hitbox because they move several pixels at a time
+
+# *platforms cannot be combined into larger platforms
+
+# *can't play all sounds at once, some get skipped
+
 ======================How to play======================
 The objective of the game is to make it to the portal in the map, which is usually at the end unless there is a creative twist.
 This game teaches you to avoid story aspects just as good looking senory and norms just as "follow the hallway" to get to the end,
@@ -70,6 +82,8 @@ you a set of armour that you regain after every respawn and new level, but you c
 unlimited attemps to pass a level and win the game by reaching the last portal. Good luck, have fun, and remember that exploits
 are part of the game... so don't keep walking into ambushes expecting to win. This isn't one of those AAA games where glitching
 out of the boundaries takes away the fun, instead it adds to the fun!
+Note: if you are unable to complete the story mode because you are stuck at a part, there is a pro walkthrough video in the archive
+called "VideosAndScreens.rar"
 
 ===================Attributions=========================
 Sounds:
