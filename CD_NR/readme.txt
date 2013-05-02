@@ -70,3 +70,13 @@ you a set of armour that you regain after every respawn and new level, but you c
 unlimited attemps to pass a level and win the game by reaching the last portal. Good luck, have fun, and remember that exploits
 are part of the game... so don't keep walking into ambushes expecting to win. This isn't one of those AAA games where glitching
 out of the boundaries takes away the fun, instead it adds to the fun!
+
+===================Attributions=========================
+Sounds:
+	Sword Swing
+		Recorded by Mike Koenig
+	Spear Throw
+		Recorded by Mike Koenig
+	Shotgun Pump
+		Recorded by Mike Koenig
+	
