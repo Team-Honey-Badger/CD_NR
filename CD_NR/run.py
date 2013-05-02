@@ -201,6 +201,7 @@ shotGun = rifle.Rifle(shotGunFrames,sampleBlock.size*1,160*scalar,shotGunCoin,2,
 portal = land.Land(portalFrames,sampleBlock.size*1,170*scalar, portalDust, "stone")
 portal.rect = portal.rect.inflate(-60*scalar,0)
 
+#converts txt files into maps
 def levelGen(blocks,peds,file):
 	pedWeapons = []
 	delBlocks = blocks[:]
@@ -438,8 +439,10 @@ def main():
 			# world_x += world_dx
 		# if pressed[K_RIGHT]:
 			# world_x -= world_dx
-		# if pressed[K_j]:
-			# print len(blocks)
+		if pressed[K_j]:
+			skipLevel = True
+		else:
+			skipLevel = False
 		if pressed[K_g]:
 			fps = s.slowMoFPS
 		else:
@@ -898,8 +901,8 @@ def main():
 		##portal
 		#if the user collides with the portal
 		#then bring him into the next map
-		if portal.x < user.x + 100*scalar and portal.x > user.x - 100 * scalar:
-			if user.headRect.colliderect(portal.rect) or user.chestRect.colliderect(portal.rect) or user.feetRect.colliderect(portal.rect):
+		if (portal.x < user.x + 100*scalar and portal.x > user.x - 100 * scalar) or skipLevel:
+			if user.headRect.colliderect(portal.rect) or user.chestRect.colliderect(portal.rect) or user.feetRect.colliderect(portal.rect) or skipLevel:
 				level += 1
 				if level == len(maps):
 					screen.blit(font.render("You have won!", 1, (0,200,0)), (340*scalar,50*scalar))

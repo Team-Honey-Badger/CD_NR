@@ -10,7 +10,7 @@ f2 = open('temp.txt', 'w')
 
 lines = f1.readlines()
 
-for i in range(38,107):
+for i in range(38,108):
 	d = lines[i]
 	f2.write(d)
 	
@@ -31,17 +31,18 @@ numToReplace = ['4','5','6','7','8','9','10','11',
 	'32','33','34','35','36']
 
 replacementChars = ['B','C','D','S','T','R','L','=','_',
-	'|','/','\\','@','#','$','%','X','J','V','I','O','0',
+	'|','/','\\','@','#','$','%','X','J','V','I','O','Temp',
 	'1','2','3','<','>','q','w','e','r','s','G']
 
 #'''						 '''#
 
-for char, rep in zip(numToReplace,replacementChars):
+for char, rep in reversed(zip(numToReplace,replacementChars)):
 	c = c.replace(char,rep)
 
 c = c.replace(',','')	#Getting rid of commas
 c = c.replace('0','-')	#Converting 0s to -s
 c = c.replace('0 ','-')	
+c = c.replace('Temp','0')
 c = c.replace(' ','')	#Getting rid of whitespace
 
 f2.write(c)
