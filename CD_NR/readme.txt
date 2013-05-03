@@ -86,6 +86,8 @@ Note: if you are unable to complete the story mode because you are stuck at a pa
 called "VideosAndScreens.rar"
 
 ===================Attributions=========================
+All sounds found and downloaded from Sonopedia
+
 Sounds:
 	Sword Swing
 		Recorded by Mike Koenig
@@ -93,4 +95,25 @@ Sounds:
 		Recorded by Mike Koenig
 	Shotgun Pump
 		Recorded by Mike Koenig
+	Alien Scream
+		Recorded by Blastwave FX
+	Insect Screech
+		Recorded by Blastwave FX
+	Monster Scream
+		Recorded by Blastwave FX
+	Insect Pain
+		Recorded by Blastwave FX
+	Enemy Hit
+		Recorded by Blastwave FX
+	Player Hit
+		Recorded by Blastwave FX
+	Player Death
+		Recorded by Blastwave FX
+	Shotgun Shot
+		Recorded by Blastwave FX
+	Rifle Shot
+		Recorded by Blastwave FX
+	Background
+		Recorded by Blastwave FX
+
 	
