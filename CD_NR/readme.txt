@@ -86,7 +86,7 @@ Note: if you are unable to complete the story mode because you are stuck at a pa
 called "VideosAndScreens.rar"
 
 ===================Attributions=========================
-All sounds found and downloaded from Sonopedia
+All sounds found and downloaded from soundbible.com and Sonopedia
 
 Sounds:
 	Sword Swing
